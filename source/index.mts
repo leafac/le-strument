@@ -42,23 +42,23 @@ await fs.writeFile(
           justify-content: center;
           align-items: center;
           flex-direction: column-reverse;
-          gap: var(--space--4);
+          gap: var(--space--2);
         `}"
         javascript="${javascript`
           this.midi = [...(await navigator.requestMIDIAccess()).outputs.values()][0];
           this.ontouchstart = () => {
-            document.querySelector("html").requestFullscreen();
+            // document.querySelector("html").requestFullscreen();
           };
         `}"
       >
         $${Array.from(
-          { length: 8 },
+          { length: 6 },
           (value, row) => html`
             <div
               css="${css`
                 width: fit-content;
                 display: flex;
-                gap: var(--space--4);
+                gap: var(--space--2);
               `}"
             >
               $${Array.from(
@@ -67,8 +67,8 @@ await fs.writeFile(
                   <button
                     type="button"
                     css="${css`
-                      width: var(--space--20);
-                      height: var(--space--20);
+                      width: var(--space--24);
+                      height: var(--space--24);
                       border: var(--border-width--1) solid;
                       border-radius: var(--border-radius--1);
                       cursor: pointer;
@@ -114,14 +114,14 @@ await fs.writeFile(
                       }
                     `}"
                     javascript="${javascript`
-                      const note = ${52 + column + 5 * row};
+                      const note = ${52 + column + 5 * row + (4 <= row ? -1 : 0)};
                       this.ontouchstart = () => {
                         this.classList.add("active");
-                        this.closest("body").midi.send([0x90, note, 127]);
+                        this.closest("body").midi.send([0x90, note, 90]);
                       };
                       this.ontouchend = () => {
                         this.classList.remove("active");
-                        this.closest("body").midi.send([0x80, note, 127]);
+                        this.closest("body").midi.send([0x80, note, 90]);
                       };
                     `}"
                   ></button>
