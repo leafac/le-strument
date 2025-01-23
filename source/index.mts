@@ -45,6 +45,7 @@ await fs.writeFile(
           gap: var(--space--4);
         `}"
         javascript="${javascript`
+          this.midi = [...(await navigator.requestMIDIAccess()).outputs.values()][0];
           this.ontouchstart = () => {
             document.querySelector("html").requestFullscreen();
           };
@@ -99,9 +100,11 @@ await fs.writeFile(
                     javascript="${javascript`
                       this.ontouchstart = () => {
                         this.classList.add("active");
+                        this.closest("body").midi.send([0x90, 69, 69]);
                       };
                       this.ontouchend = () => {
                         this.classList.remove("active");
+                        this.closest("body").midi.send([0x80, 69, 69]);
                       };
                     `}"
                   ></button>
