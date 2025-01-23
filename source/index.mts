@@ -45,10 +45,15 @@ await fs.writeFile(
           gap: var(--space--0);
         `}"
         javascript="${javascript`
-          this.midi = [...(await navigator.requestMIDIAccess()).outputs.values()][0];
-          this.ontouchstart = () => {
-            // document.querySelector("html").requestFullscreen();
-          };
+          try {
+            this.midi = [...(await navigator.requestMIDIAccess()).outputs.values()][0];
+            this.ontouchstart = () => {
+              // document.querySelector("html").requestFullscreen();
+            };
+          }
+          catch (error) {
+            alert (error);
+          }
         `}"
       >
         $${Array.from(
