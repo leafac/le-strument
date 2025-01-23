@@ -34,15 +34,15 @@ await fs.writeFile(
             var(--color--white),
             var(--color--black)
           );
-          padding: var(--space--4);
+          padding: var(--size--4);
           position: fixed;
-          inset: var(--space--0);
+          inset: var(--size--0);
           overflow: hidden;
           display: flex;
           justify-content: center;
           align-items: center;
           flex-direction: column-reverse;
-          gap: var(--space--0);
+          gap: var(--size--0);
         `}"
         javascript="${javascript`
           try {
@@ -63,7 +63,7 @@ await fs.writeFile(
               css="${css`
                 width: fit-content;
                 display: flex;
-                gap: var(--space--0);
+                gap: var(--size--0);
               `}"
             >
               $${Array.from(
@@ -72,8 +72,8 @@ await fs.writeFile(
                   <button
                     type="button"
                     css="${css`
-                      width: var(--space--24);
-                      height: var(--space--24);
+                      width: var(--size--24);
+                      height: var(--size--24);
                       border: var(--border-width--1) solid;
                       border-radius: var(--border-radius--1);
                       cursor: pointer;
