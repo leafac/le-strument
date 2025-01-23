@@ -48,6 +48,7 @@ await fs.writeFile(
           () => html`
             <div
               css="${css`
+                width: fit-content;
                 display: flex;
                 gap: var(--space--2);
               `}"
