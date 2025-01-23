@@ -46,7 +46,7 @@ await fs.writeFile(
         `}"
         javascript="${javascript`
           this.ontouchstart = () => {
-            document.documentElement.requestFullscreen();
+            document.querySelector("html").requestFullscreen();
           };
         `}"
       >
@@ -81,10 +81,28 @@ await fs.writeFile(
                       cursor: pointer;
                       user-select: none;
                       transition-property: var(--transition-property--colors);
-                      transition-duration: var(--transition-duration--150);
+                      transition-duration: var(--transition-duration--75);
                       transition-timing-function: var(
                         --transition-timing-function--ease-in-out
                       );
+                      &.active {
+                        background-color: light-dark(
+                          var(--color--blue--100),
+                          var(--color--blue--900)
+                        );
+                        border-color: light-dark(
+                          var(--color--blue--200),
+                          var(--color--blue--800)
+                        );
+                      }
+                    `}"
+                    javascript="${javascript`
+                      this.ontouchstart = () => {
+                        this.classList.add("active");
+                      };
+                      this.ontouchend = () => {
+                        this.classList.remove("active");
+                      };
                     `}"
                   ></button>
                 `
