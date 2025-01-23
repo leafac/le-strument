@@ -42,7 +42,7 @@ await fs.writeFile(
           justify-content: center;
           align-items: center;
           flex-direction: column-reverse;
-          gap: var(--space--2);
+          gap: var(--space--0);
         `}"
         javascript="${javascript`
           this.midi = [...(await navigator.requestMIDIAccess()).outputs.values()][0];
@@ -58,7 +58,7 @@ await fs.writeFile(
               css="${css`
                 width: fit-content;
                 display: flex;
-                gap: var(--space--2);
+                gap: var(--space--0);
               `}"
             >
               $${Array.from(
