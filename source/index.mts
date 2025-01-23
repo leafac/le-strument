@@ -34,37 +34,44 @@ await fs.writeFile(
             var(--color--white),
             var(--color--black)
           );
-          padding: var(--space--2);
+          padding: var(--space--4);
           position: fixed;
           inset: var(--space--0);
           overflow: hidden;
           display: flex;
+          justify-content: center;
+          align-items: center;
           flex-direction: column-reverse;
-          gap: var(--space--2);
+          gap: var(--space--4);
+        `}"
+        javascript="${javascript`
+          this.ontouchstart = () => {
+            document.documentElement.requestFullscreen();
+          };
         `}"
       >
         $${Array.from(
-          { length: 16 },
+          { length: 8 },
           () => html`
             <div
               css="${css`
                 width: fit-content;
                 display: flex;
-                gap: var(--space--2);
+                gap: var(--space--4);
               `}"
             >
               $${Array.from(
-                { length: 25 },
+                { length: 13 },
                 () => html`
                   <button
                     type="button"
                     css="${css`
                       background-color: light-dark(
-                        var(--color--slate--50),
-                        var(--color--slate--950)
+                        var(--color--slate--100),
+                        var(--color--slate--900)
                       );
-                      width: var(--space--16);
-                      height: var(--space--16);
+                      width: var(--space--20);
+                      height: var(--space--20);
                       border: var(--border-width--1) solid
                         light-dark(
                           var(--color--slate--200),
@@ -78,19 +85,6 @@ await fs.writeFile(
                       transition-timing-function: var(
                         --transition-timing-function--ease-in-out
                       );
-                      &:hover,
-                      &:focus-within {
-                        background-color: light-dark(
-                          var(--color--slate--100),
-                          var(--color--slate--800)
-                        );
-                      }
-                      &:active {
-                        background-color: light-dark(
-                          var(--color--slate--200),
-                          var(--color--slate--900)
-                        );
-                      }
                     `}"
                   ></button>
                 `
