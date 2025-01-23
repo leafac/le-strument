@@ -53,7 +53,7 @@ await fs.writeFile(
       >
         $${Array.from(
           { length: 8 },
-          () => html`
+          (value, row) => html`
             <div
               css="${css`
                 width: fit-content;
@@ -63,21 +63,13 @@ await fs.writeFile(
             >
               $${Array.from(
                 { length: 13 },
-                () => html`
+                (value, column) => html`
                   <button
                     type="button"
                     css="${css`
-                      background-color: light-dark(
-                        var(--color--slate--100),
-                        var(--color--slate--900)
-                      );
                       width: var(--space--20);
                       height: var(--space--20);
-                      border: var(--border-width--1) solid
-                        light-dark(
-                          var(--color--slate--200),
-                          var(--color--slate--800)
-                        );
+                      border: var(--border-width--1) solid;
                       border-radius: var(--border-radius--1);
                       cursor: pointer;
                       user-select: none;
@@ -86,25 +78,50 @@ await fs.writeFile(
                       transition-timing-function: var(
                         --transition-timing-function--ease-in-out
                       );
+                    `} ${column === 0 ||
+                    column === 5 ||
+                    column === 7 ||
+                    column === 10
+                      ? css`
+                          background-color: light-dark(
+                            var(--color--blue--100),
+                            var(--color--blue--900)
+                          );
+                          border-color: light-dark(
+                            var(--color--blue--200),
+                            var(--color--blue--800)
+                          );
+                        `
+                      : css`
+                          background-color: light-dark(
+                            var(--color--slate--100),
+                            var(--color--slate--900)
+                          );
+                          border-color: light-dark(
+                            var(--color--slate--200),
+                            var(--color--slate--800)
+                          );
+                        `} ${css`
                       &.active {
                         background-color: light-dark(
-                          var(--color--blue--100),
-                          var(--color--blue--900)
+                          var(--color--green--100),
+                          var(--color--green--900)
                         );
                         border-color: light-dark(
-                          var(--color--blue--200),
-                          var(--color--blue--800)
+                          var(--color--green--200),
+                          var(--color--green--800)
                         );
                       }
                     `}"
                     javascript="${javascript`
+                      const note = ${52 + column + 5 * row};
                       this.ontouchstart = () => {
                         this.classList.add("active");
-                        this.closest("body").midi.send([0x90, 69, 69]);
+                        this.closest("body").midi.send([0x90, note, 127]);
                       };
                       this.ontouchend = () => {
                         this.classList.remove("active");
-                        this.closest("body").midi.send([0x80, 69, 69]);
+                        this.closest("body").midi.send([0x80, note, 127]);
                       };
                     `}"
                   ></button>
