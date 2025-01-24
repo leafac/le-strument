@@ -17,7 +17,11 @@ await fs.writeFile(
   path.join(import.meta.dirname, "./static/index.html"),
   html`
     <!doctype html>
-    <html>
+    <html
+      css="${css`
+        color-scheme: light dark;
+      `}"
+    >
       <head>
         <link rel="stylesheet" href="/${caddy.staticFiles["index.css"]}" />
         <script src="/${caddy.staticFiles["index.mjs"]}"></script>
@@ -75,14 +79,8 @@ await fs.writeFile(
                       width: var(--size--24);
                       height: var(--size--24);
                       border: var(--border-width--1) solid;
-                      border-radius: var(--border-radius--1);
                       cursor: pointer;
                       user-select: none;
-                      transition-property: var(--transition-property--colors);
-                      transition-duration: var(--transition-duration--75);
-                      transition-timing-function: var(
-                        --transition-timing-function--ease-in-out
-                      );
                     `} ${column === 0 ||
                     column === 5 ||
                     column === 7 ||
