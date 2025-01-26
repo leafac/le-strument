@@ -208,6 +208,35 @@ await fs.writeFile(
           >
             <div
               css="${css`
+                display: flex;
+              `}"
+            >
+              $${Array.from(
+                { length: 13 },
+                (array, column) => html`
+                  <div
+                    css="${css`
+                      flex: 1;
+                      font-size: var(--size--1-5);
+                      text-align: center;
+                      color: light-dark(
+                        var(--color--slate--400),
+                        var(--color--slate--600)
+                      );
+                    `}"
+                  >
+                    $${column === 0 ||
+                    column === 5 ||
+                    column === 7 ||
+                    column === 10
+                      ? html`<i class="bi bi-circle-fill"></i>`
+                      : html``}
+                  </div>
+                `,
+              )}
+            </div>
+            <div
+              css="${css`
                 flex: 1;
                 display: flex;
                 flex-direction: column;
@@ -306,35 +335,6 @@ await fs.writeFile(
                         ></div>
                       `,
                     )}
-                  </div>
-                `,
-              )}
-            </div>
-            <div
-              css="${css`
-                display: flex;
-              `}"
-            >
-              $${Array.from(
-                { length: 13 },
-                (array, column) => html`
-                  <div
-                    css="${css`
-                      flex: 1;
-                      font-size: var(--size--1-5);
-                      text-align: center;
-                      color: light-dark(
-                        var(--color--slate--400),
-                        var(--color--slate--600)
-                      );
-                    `}"
-                  >
-                    $${column === 0 ||
-                    column === 5 ||
-                    column === 7 ||
-                    column === 10
-                      ? html`<i class="bi bi-circle-fill"></i>`
-                      : html``}
                   </div>
                 `,
               )}
