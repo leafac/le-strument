@@ -77,15 +77,19 @@ await fs.writeFile(
             <tbody>
               $${Array.from(
                 { length: 6 },
-                () => html`
+                (array, row) => html`
                   <tr>
                     $${Array.from(
                       { length: 13 },
-                      () => html`
+                      (array, column) => html`
                         <td
                           css="${css`
                             width: var(--size--24);
                             height: var(--size--24);
+                            background-color: light-dark(
+                                var(--color--slate--100),
+                                var(--color--slate--900)
+                              );
                             border: var(--border-width--1) solid
                               light-dark(
                                 var(--color--slate--400),
