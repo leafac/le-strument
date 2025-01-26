@@ -61,6 +61,29 @@ await fs.writeFile(
         `}"
       >
         <div
+          type="form"
+          css="${css`
+            padding: var(--size--2) var(--size--4);
+            border-bottom: var(--border-width--1) solid
+              light-dark(var(--color--slate--200), var(--color--slate--800));
+            display: flex;
+            align-items: center;
+            gap: var(--size--4);
+          `}"
+        >
+          <div
+            href="/"
+            css="${css`
+              font-family: "Roboto Serif Variable", var(--font-family--serif);
+              font-weight: 900;
+              font-size: var(--font-size--4);
+              line-height: var(--font-size--4--line-height);
+            `}"
+          >
+            Lê-strument
+          </div>
+        </div>
+        <div
           css="${css`
             flex: 1;
             padding: var(--size--2) var(--size--4);
@@ -87,9 +110,9 @@ await fs.writeFile(
                             width: var(--size--24);
                             height: var(--size--24);
                             background-color: light-dark(
-                                var(--color--slate--100),
-                                var(--color--slate--900)
-                              );
+                              var(--color--slate--100),
+                              var(--color--slate--900)
+                            );
                             border: var(--border-width--1) solid
                               light-dark(
                                 var(--color--slate--400),
