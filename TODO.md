@@ -3,7 +3,6 @@
 - Polyphony
   - Monophonic
     - Choose MIDI channel
-  - Polyphonic
 - Velocity
   - Fixed (but configurable)
 
