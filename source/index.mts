@@ -165,7 +165,7 @@ await fs.writeFile(
                 }
               `}"
               javascript="${javascript`
-                this.onclick = () => {
+                this.ontouchstart = () => {
                   document.querySelector("html").requestFullscreen();
                 };
               `}"
@@ -180,7 +180,7 @@ await fs.writeFile(
                 }
               `}"
               javascript="${javascript`
-                this.onclick = () => {
+                this.ontouchstart = () => {
                   document.exitFullscreen();
                 };
               `}"
