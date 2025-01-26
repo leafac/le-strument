@@ -60,9 +60,48 @@ await fs.writeFile(
           }
         `}"
       >
-        <div>HELLO</div>
-        <div>WORLD</div>
+        <div
+          css="${css`
+            flex: 1;
+            padding: var(--size--2) var(--size--4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          `}"
+        >
+          <table
+            css="${css`
+              border-collapse: collapse;
+            `}"
+          >
+            <tbody>
+              $${Array.from(
+                { length: 6 },
+                () => html`
+                  <tr>
+                    $${Array.from(
+                      { length: 13 },
+                      () => html`
+                        <td
+                          css="${css`
+                            width: var(--size--24);
+                            height: var(--size--24);
+                            border: var(--border-width--1) solid
+                              light-dark(
+                                var(--color--slate--400),
+                                var(--color--slate--600)
+                              );
+                          `}"
+                        ></td>
+                      `,
+                    )}
+                  </tr>
+                `,
+              )}
+            </tbody>
+          </table>
+        </div>
       </body>
     </html>
-  `
+  `,
 );
