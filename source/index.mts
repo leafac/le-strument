@@ -68,8 +68,11 @@ await fs.writeFile(
             border-bottom: var(--border-width--1) solid
               light-dark(var(--color--slate--200), var(--color--slate--800));
             display: flex;
-            align-items: center;
-            gap: var(--size--4);
+            align-items: baseline;
+            gap: var(--size--6);
+          `}"
+          javascript="${javascript`
+            this.isModified = false;
           `}"
         >
           <div
@@ -87,7 +90,57 @@ await fs.writeFile(
             css="${css`
               flex: 1;
             `}"
-          ></div>
+          >
+            <div>
+              <span
+                css="${css`
+                  color: light-dark(
+                    var(--color--slate--600),
+                    var(--color--slate--400)
+                  );
+                `}"
+                >Octave</span
+              > <button
+                type="button"
+                css="${css`
+                  padding: var(--size--1) var(--size--2);
+                `}"
+                javascript="${javascript`
+                  this.onclick = () => {
+                    const element = this.closest('[type~="form"]').querySelector('[name="octave"]');
+                    const value = Number(element.value) - 1;
+                    element.value = (0 < value ? "+" : "") + String(value);
+                  };
+                `}"
+              >
+                <i class="bi bi-caret-left-fill"></i></button
+              ><input
+                type="text"
+                name="octave"
+                value="+0"
+                readonly
+                css="${css`
+                  font-family: "Roboto Mono Variable",
+                    var(--font-family--monospace);
+                  field-sizing: content;
+                `}"
+              /><button
+                type="button"
+                css="${css`
+                  padding: var(--size--1) var(--size--2);
+                `}"
+                javascript="${javascript`
+                  this.onclick = () => {
+                    const element = this.closest('[type~="form"]').querySelector('[name="octave"]');
+                    const value = Number(element.value) + 1;
+                    element.value = (0 < value ? "+" : "") + String(value);
+                  };
+                `}"
+              >
+                <i class="bi bi-caret-right-fill"></i>
+              </button>
+            </div>
+          </div>
           <div>
             <button
               type="button"
