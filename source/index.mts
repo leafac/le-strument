@@ -94,6 +94,7 @@ await fs.writeFile(
         >
           <div
             css="${css`
+              flex: 1;
               display: flex;
               flex-direction: column;
             `}"
@@ -111,12 +112,12 @@ await fs.writeFile(
                     (array, column) => html`
                       <div
                         css="${css`
-                          width: var(--size--24);
-                          height: var(--size--24);
+                          flex: 1;
                           background-color: light-dark(
                             var(--color--slate--100),
                             var(--color--slate--900)
                           );
+                          aspect-ratio: var(--aspect-ratio--square);
                           border-top: var(--border-width--1) solid
                             light-dark(
                               var(--color--slate--400),
