@@ -1,6 +1,5 @@
 # TODO
 
-- Octaves
 - Polyphony
   - Monophonic
     - Choose MIDI channel
