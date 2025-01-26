@@ -5,6 +5,9 @@
     "test": "npm run prepare && prettier --check \"./package.json\" \"./tsconfig.json\" \"./source/\""
   },
   "dependencies": {
+    "@fontsource-variable/roboto-flex": "^5.1.1",
+    "@fontsource-variable/roboto-mono": "^5.1.1",
+    "@fontsource-variable/roboto-serif": "^5.1.2",
     "@radically-straightforward/development": "^1.0.48",
     "@radically-straightforward/production": "^1.0.32",
     "nodemon": "^3.1.9",

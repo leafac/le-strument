@@ -7,7 +7,7 @@
   - Polyphonic
 - Velocity
   - Fixed (but configurable)
-- Fullscreen
+- Fullscreen (`document.querySelector("html").requestFullscreen();`)
 
 ## Good to have
 
@@ -30,3 +30,5 @@
     - https://www.researchgate.net/publication/254005538_MicPen_pressure-sensitive_pen_interaction_using_microphone_with_standard_touchscreen
     - https://www.mdpi.com/2076-3417/11/11/4834
 - Starter guide
+- Logo
+- Favicon

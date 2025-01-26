@@ -7,6 +7,11 @@ import * as caddy from "@radically-straightforward/caddy";
 
 css`
   @import "@radically-straightforward/javascript/static/index.css";
+  @import "@fontsource-variable/roboto-flex/slnt.css";
+  @import "@fontsource-variable/roboto-serif/wght.css";
+  @import "@fontsource-variable/roboto-serif/wght-italic.css";
+  @import "@fontsource-variable/roboto-mono/wght.css";
+  @import "@fontsource-variable/roboto-mono/wght-italic.css";
 `;
 
 javascript`
@@ -33,106 +38,30 @@ await fs.writeFile(
       </head>
       <body
         css="${css`
+          font-family: "Roboto Flex Variable", var(--font-family--sans-serif);
+          font-size: var(--font-size--3-5);
+          line-height: var(--font-size--3-5--line-height);
           color: light-dark(var(--color--black), var(--color--white));
           background-color: light-dark(
             var(--color--white),
             var(--color--black)
           );
-          padding: var(--size--4);
           position: fixed;
           inset: var(--size--0);
           overflow: hidden;
           display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column-reverse;
-          gap: var(--size--0);
+          flex-direction: column;
         `}"
         javascript="${javascript`
           try {
             this.midi = [...(await navigator.requestMIDIAccess()).outputs.values()][0];
-            this.ontouchstart = () => {
-              // document.querySelector("html").requestFullscreen();
-            };
-          }
-          catch (error) {
+          } catch (error) {
             alert (error);
           }
         `}"
       >
-        $${Array.from(
-          { length: 6 },
-          (value, row) => html`
-            <div
-              css="${css`
-                width: fit-content;
-                display: flex;
-                gap: var(--size--0);
-              `}"
-            >
-              $${Array.from(
-                { length: 13 },
-                (value, column) => html`
-                  <button
-                    type="button"
-                    css="${css`
-                      width: var(--size--24);
-                      height: var(--size--24);
-                      border: var(--border-width--1) solid;
-                      cursor: pointer;
-                      user-select: none;
-                    `} ${column === 0 ||
-                    column === 5 ||
-                    column === 7 ||
-                    column === 10
-                      ? css`
-                          background-color: light-dark(
-                            var(--color--blue--100),
-                            var(--color--blue--900)
-                          );
-                          border-color: light-dark(
-                            var(--color--blue--200),
-                            var(--color--blue--800)
-                          );
-                        `
-                      : css`
-                          background-color: light-dark(
-                            var(--color--slate--100),
-                            var(--color--slate--900)
-                          );
-                          border-color: light-dark(
-                            var(--color--slate--200),
-                            var(--color--slate--800)
-                          );
-                        `} ${css`
-                      &.active {
-                        background-color: light-dark(
-                          var(--color--green--100),
-                          var(--color--green--900)
-                        );
-                        border-color: light-dark(
-                          var(--color--green--200),
-                          var(--color--green--800)
-                        );
-                      }
-                    `}"
-                    javascript="${javascript`
-                      const note = ${52 + column + 5 * row + (4 <= row ? -1 : 0)};
-                      this.ontouchstart = () => {
-                        this.classList.add("active");
-                        this.closest("body").midi.send([0x90, note, 90]);
-                      };
-                      this.ontouchend = () => {
-                        this.classList.remove("active");
-                        this.closest("body").midi.send([0x80, note, 90]);
-                      };
-                    `}"
-                  ></button>
-                `
-              )}
-            </div>
-          `
-        )}
+        <div>HELLO</div>
+        <div>WORLD</div>
       </body>
     </html>
   `
