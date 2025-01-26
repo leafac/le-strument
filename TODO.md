@@ -1,7 +1,5 @@
 # TODO
 
-- Grid
-  - Markers
 - Octaves
 - Polyphony
   - Monophonic
