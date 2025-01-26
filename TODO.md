@@ -11,6 +11,7 @@
 
 ## Good to have
 
+- Choose MIDI input
 - Adjust the tuning of the rows
   - Custom
   - Presets
@@ -28,3 +29,4 @@
     - https://www.researchgate.net/publication/254005475_PseudoButton_enabling_pressure-sensitive_interaction_by_repurposing_microphone_on_mobile_device
     - https://www.researchgate.net/publication/254005538_MicPen_pressure-sensitive_pen_interaction_using_microphone_with_standard_touchscreen
     - https://www.mdpi.com/2076-3417/11/11/4834
+- Starter guide
