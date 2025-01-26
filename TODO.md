@@ -11,6 +11,7 @@
 
 ## Good to have
 
+- Grid adjusts itself to screen size
 - Choose MIDI input
 - Adjust the tuning of the rows
   - Custom
