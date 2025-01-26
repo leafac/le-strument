@@ -8,6 +8,8 @@
 
 ## Good to have
 
+- Slides (X axis)
+- Modulation (Y axis)
 - Remember settings in query parameters
 - Grid adjusts itself to screen size
 - Choose MIDI input
