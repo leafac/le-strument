@@ -83,6 +83,40 @@ await fs.writeFile(
           >
             Lê-strument
           </div>
+          <div
+            css="${css`
+              flex: 1;
+            `}"
+          ></div>
+          <div>
+            <button
+              key="fullscreen--open"
+              type="button"
+              javascript="${javascript`
+                this.onclick = () => {
+                  document.querySelector("html").requestFullscreen();
+                  this.hidden = true;
+                  this.closest('[type="form"]').querySelector('[key~="fullscreen--close"]').hidden = false;
+                };
+              `}"
+            >
+              <i class="bi bi-fullscreen"></i>
+            </button>
+            <button
+              key="fullscreen--close"
+              type="button"
+              hidden
+              javascript="${javascript`
+                this.onclick = () => {
+                  document.exitFullscreen();
+                  this.hidden = true;       
+                  this.closest('[type="form"]').querySelector('[key~="fullscreen--open"]').hidden = false;
+                };
+              `}"
+            >
+              <i class="bi bi-fullscreen-exit"></i>
+            </button>
+          </div>
         </div>
         <div
           css="${css`
@@ -216,12 +250,11 @@ await fs.writeFile(
                   <div
                     css="${css`
                       flex: 1;
-                      font-size: var(--font-size--2-5);
-                      line-height: var(--font-size--2-5--line-height);
+                      font-size: var(--size--1-5);
                       text-align: center;
                       color: light-dark(
-                        var(--color--slate--500),
-                        var(--color--slate--500)
+                        var(--color--slate--400),
+                        var(--color--slate--600)
                       );
                     `}"
                   >
