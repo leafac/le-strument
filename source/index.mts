@@ -92,41 +92,75 @@ await fs.writeFile(
             align-items: center;
           `}"
         >
-          <table
+          <div
             css="${css`
-              border-collapse: collapse;
+              display: flex;
+              flex-direction: column;
             `}"
           >
-            <tbody>
-              $${Array.from(
-                { length: 6 },
-                (array, row) => html`
-                  <tr>
-                    $${Array.from(
-                      { length: 13 },
-                      (array, column) => html`
-                        <td
-                          css="${css`
-                            width: var(--size--24);
-                            height: var(--size--24);
-                            background-color: light-dark(
-                              var(--color--slate--100),
-                              var(--color--slate--900)
+            $${Array.from(
+              { length: 6 },
+              (array, row) => html`
+                <div
+                  css="${css`
+                    display: flex;
+                  `}"
+                >
+                  $${Array.from(
+                    { length: 13 },
+                    (array, column) => html`
+                      <div
+                        css="${css`
+                          width: var(--size--24);
+                          height: var(--size--24);
+                          background-color: light-dark(
+                            var(--color--slate--100),
+                            var(--color--slate--900)
+                          );
+                          border-top: var(--border-width--1) solid
+                            light-dark(
+                              var(--color--slate--400),
+                              var(--color--slate--600)
                             );
-                            border: var(--border-width--1) solid
+                          border-left: var(--border-width--1) solid
+                            light-dark(
+                              var(--color--slate--400),
+                              var(--color--slate--600)
+                            );
+                          &:last-child {
+                            border-right: var(--border-width--1) solid
                               light-dark(
                                 var(--color--slate--400),
                                 var(--color--slate--600)
                               );
-                          `}"
-                        ></td>
-                      `,
-                    )}
-                  </tr>
-                `,
-              )}
-            </tbody>
-          </table>
+                          }
+                          :last-child > & {
+                            border-bottom: var(--border-width--1) solid
+                              light-dark(
+                                var(--color--slate--400),
+                                var(--color--slate--600)
+                              );
+                          }
+                          :first-child > &:first-child {
+                            border-top-left-radius: var(--border-radius--1);
+                          }
+                          :first-child > &:last-child {
+                            border-top-right-radius: var(--border-radius--1);
+                          }
+                          :last-child > &:last-child {
+                            border-bottom-right-radius: var(--border-radius--1);
+                          }
+                          :last-child > &:first-child {
+                            border-bottom-left-radius: var(--border-radius--1);
+                          }
+                        `}"
+                      ></div>
+                    `,
+                  )}
+                </div>
+              `,
+            )}
+          </div>
         </div>
       </body>
     </html>
