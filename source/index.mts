@@ -246,7 +246,7 @@ await fs.writeFile(
                 const voices = new Map();
                 this.ontouchstart = (event) => {
                   if (!event.target.matches('[key~="button"]')) return;
-                  const note = tuning[event.target.row] + event.target.column + 12 * Number(document.querySelector('[name="octave"]').value);
+                  const note = Math.max(0, Math.min(127, tuning[event.target.row] + event.target.column + 12 * Number(document.querySelector('[name="octave"]').value)));
                   document.querySelector("body").midi.send([0b10010000, note, 64]);
                   voices.set(event.target, note);
                   javascript.stateAdd(event.target, "active");
