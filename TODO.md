@@ -7,7 +7,6 @@
   - Polyphonic
 - Velocity
   - Fixed (but configurable)
-- Fullscreen (`document.querySelector("html").requestFullscreen();`)
 
 ## Good to have
 

@@ -90,27 +90,30 @@ await fs.writeFile(
           ></div>
           <div>
             <button
-              key="fullscreen--open"
               type="button"
+              css="${css`
+                html:fullscreen & {
+                  display: none;
+                }
+              `}"
               javascript="${javascript`
                 this.onclick = () => {
                   document.querySelector("html").requestFullscreen();
-                  this.hidden = true;
-                  this.closest('[type="form"]').querySelector('[key~="fullscreen--close"]').hidden = false;
                 };
               `}"
             >
               <i class="bi bi-fullscreen"></i>
             </button>
             <button
-              key="fullscreen--close"
               type="button"
-              hidden
+              css="${css`
+                html:not(:fullscreen) & {
+                  display: none;
+                }
+              `}"
               javascript="${javascript`
                 this.onclick = () => {
                   document.exitFullscreen();
-                  this.hidden = true;       
-                  this.closest('[type="form"]').querySelector('[key~="fullscreen--open"]').hidden = false;
                 };
               `}"
             >
