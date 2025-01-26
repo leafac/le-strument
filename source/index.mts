@@ -56,7 +56,7 @@ await fs.writeFile(
           try {
             this.midi = [...(await navigator.requestMIDIAccess()).outputs.values()][0];
           } catch (error) {
-            alert (error);
+            alert(error);
           }
         `}"
       >
@@ -98,6 +98,25 @@ await fs.writeFile(
               display: flex;
               flex-direction: column;
             `}"
+            javascript="${javascript`
+              const tuning = [64, 59, 55, 50, 45, 40];
+              const voices = new Map();
+              this.ontouchstart = (event) => {
+                if (!event.target.matches('[key~="button"]')) return;
+                const note = tuning[event.target.row] + event.target.column;
+                document.querySelector("body").midi.send([0b10010000, note, 64]);
+                voices.set(event.target, note);
+                javascript.stateAdd(event.target, "active");
+              };
+              this.ontouchend = (event) => {
+                if (!event.target.matches('[key~="button"]')) return;
+                const note = voices.get(event.target);
+                if (note === undefined) return;
+                document.querySelector("body").midi.send([0b10000000, note, 64]);
+                voices.delete(event.target);
+                javascript.stateRemove(event.target, "active");
+              };
+            `}"
           >
             $${Array.from(
               { length: 6 },
@@ -111,6 +130,7 @@ await fs.writeFile(
                     { length: 13 },
                     (array, column) => html`
                       <div
+                        key="button"
                         css="${css`
                           flex: 1;
                           background-color: light-dark(
@@ -154,6 +174,16 @@ await fs.writeFile(
                           :last-child > &:first-child {
                             border-bottom-left-radius: var(--border-radius--1);
                           }
+                          &[state~="active"] {
+                            background-color: light-dark(
+                              var(--color--green--500),
+                              var(--color--green--500)
+                            );
+                          }
+                        `}"
+                        javascript="${javascript`
+                          this.row = ${row};
+                          this.column = ${column};
                         `}"
                       ></div>
                     `,
