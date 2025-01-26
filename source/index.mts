@@ -282,8 +282,8 @@ await fs.writeFile(
                         column === 10
                           ? css`
                               background-color: light-dark(
-                                var(--color--blue--50),
-                                var(--color--blue--950)
+                                var(--color--slate--200),
+                                var(--color--slate--800)
                               );
                             `
                           : css`
