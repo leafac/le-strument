@@ -73,6 +73,9 @@ await fs.writeFile(
           `}"
           javascript="${javascript`
             this.isModified = false;
+            this.onchange = () => {
+              history.pushState(null, "", "?" + new URLSearchParams(javascript.serialize(this)).toString());
+            };
           `}"
         >
           <div
@@ -110,6 +113,11 @@ await fs.writeFile(
                     const element = this.closest('[type~="form"]').querySelector('[name="octave"]');
                     const value = Number(element.value) - 1;
                     element.value = (0 < value ? "+" : "") + String(value);
+                    element.dispatchEvent(new Event("change", {
+                      bubbles: true,
+                      cancelable: false,
+                      composed: false,
+                    }));
                   };
                 `}"
               >
@@ -134,6 +142,11 @@ await fs.writeFile(
                     const element = this.closest('[type~="form"]').querySelector('[name="octave"]');
                     const value = Number(element.value) + 1;
                     element.value = (0 < value ? "+" : "") + String(value);
+                    element.dispatchEvent(new Event("change", {
+                      bubbles: true,
+                      cancelable: false,
+                      composed: false,
+                    }));
                   };
                 `}"
               >
