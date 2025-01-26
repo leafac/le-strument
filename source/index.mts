@@ -74,7 +74,7 @@ await fs.writeFile(
           javascript="${javascript`
             this.isModified = false;
             this.onchange = () => {
-              history.pushState(null, "", "?" + new URLSearchParams(javascript.serialize(this)).toString());
+              window.history.pushState(null, "", "?" + new URLSearchParams(javascript.serialize(this)).toString());
             };
           `}"
         >
@@ -112,7 +112,7 @@ await fs.writeFile(
                   this.onclick = () => {
                     const element = this.closest('[type~="form"]').querySelector('[name="octave"]');
                     const value = Number(element.value) - 1;
-                    element.value = (0 < value ? "+" : "") + String(value);
+                    element.value = (0 <= value ? "+" : "") + String(value);
                     element.dispatchEvent(new Event("change", {
                       bubbles: true,
                       cancelable: false,
@@ -125,12 +125,14 @@ await fs.writeFile(
               ><input
                 type="text"
                 name="octave"
-                value="+0"
                 readonly
                 css="${css`
                   font-family: "Roboto Mono Variable",
                     var(--font-family--monospace);
                   field-sizing: content;
+                `}"
+                javascript="${javascript`
+                  this.value = new URL(window.location).searchParams.get("octave") ?? "+0";
                 `}"
               /><button
                 type="button"
@@ -141,7 +143,7 @@ await fs.writeFile(
                   this.onclick = () => {
                     const element = this.closest('[type~="form"]').querySelector('[name="octave"]');
                     const value = Number(element.value) + 1;
-                    element.value = (0 < value ? "+" : "") + String(value);
+                    element.value = (0 <= value ? "+" : "") + String(value);
                     element.dispatchEvent(new Event("change", {
                       bubbles: true,
                       cancelable: false,
