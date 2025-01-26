@@ -109,7 +109,7 @@ await fs.writeFile(
                   padding: var(--size--1) var(--size--2);
                 `}"
                 javascript="${javascript`
-                  this.onclick = () => {
+                  this.ontouchstart = () => {
                     const element = this.closest('[type~="form"]').querySelector('[name="octave"]');
                     const value = Number(element.value) - 1;
                     element.value = (0 <= value ? "+" : "") + String(value);
@@ -140,7 +140,7 @@ await fs.writeFile(
                   padding: var(--size--1) var(--size--2);
                 `}"
                 javascript="${javascript`
-                  this.onclick = () => {
+                  this.ontouchstart = () => {
                     const element = this.closest('[type~="form"]').querySelector('[name="octave"]');
                     const value = Number(element.value) + 1;
                     element.value = (0 <= value ? "+" : "") + String(value);
