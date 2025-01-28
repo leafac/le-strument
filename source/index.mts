@@ -109,7 +109,7 @@ await fs.writeFile(
                 `}"
                 javascript="${javascript`
                   this.ontouchstart = () => {
-                    const element = this.closest('[type~="form"]').querySelector('[name="octave"]');
+                    const element = document.querySelector('[name="octave"]');
                     const value = Number(element.value) - 1;
                     element.value = (0 <= value ? "+" : "") + String(value);
                     element.dispatchEvent(new Event("change", {
@@ -131,7 +131,8 @@ await fs.writeFile(
                   field-sizing: content;
                 `}"
                 javascript="${javascript`
-                  this.value = new URL(window.location).searchParams.get("octave") ?? "+0";
+                  const value = Number(new URL(window.location).searchParams.get("octave"));
+                  this.value = Number.isNaN(value) ? "+0" : (0 <= value ? "+" : "") + String(value);
                 `}"
               /><button
                 type="button"
@@ -140,7 +141,7 @@ await fs.writeFile(
                 `}"
                 javascript="${javascript`
                   this.ontouchstart = () => {
-                    const element = this.closest('[type~="form"]').querySelector('[name="octave"]');
+                    const element = document.querySelector('[name="octave"]');
                     const value = Number(element.value) + 1;
                     element.value = (0 <= value ? "+" : "") + String(value);
                     element.dispatchEvent(new Event("change", {
