@@ -79,7 +79,6 @@ await fs.writeFile(
           `}"
         >
           <div
-            href="/"
             css="${css`
               font-family: "Roboto Serif Variable", var(--font-family--serif);
               font-weight: 900;
