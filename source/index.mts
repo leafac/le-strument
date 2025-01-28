@@ -111,6 +111,7 @@ await fs.writeFile(
                   this.ontouchstart = () => {
                     const element = document.querySelector('[name="octave"]');
                     const value = Number(element.value) - 1;
+                    if (value < -8) return;
                     element.value = (0 <= value ? "+" : "") + String(value);
                     element.dispatchEvent(new Event("change", {
                       bubbles: true,
@@ -143,6 +144,7 @@ await fs.writeFile(
                   this.ontouchstart = () => {
                     const element = document.querySelector('[name="octave"]');
                     const value = Number(element.value) + 1;
+                    if (8 < value) return;
                     element.value = (0 <= value ? "+" : "") + String(value);
                     element.dispatchEvent(new Event("change", {
                       bubbles: true,
