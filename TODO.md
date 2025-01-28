@@ -34,6 +34,7 @@
 - Logo
 - Favicon
 - History navigation overwriting Live Navigation (for speed, not need to reload the document from the server)
+- Offline (manifest, allow installation)
 
 ## Other
 
