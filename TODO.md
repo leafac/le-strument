@@ -1,5 +1,6 @@
 # TODO
 
+- Semitones
 - Polyphony
   - Monophonic
     - Choose MIDI channel
