@@ -230,7 +230,6 @@ await fs.writeFile(
             (array, row) => html`
               <div
                 css="${css`
-                  flex: 1;
                   min-width: var(--size--0);
                   min-height: var(--size--0);
                   max-width: 100%;
