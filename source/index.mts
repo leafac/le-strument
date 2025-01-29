@@ -197,7 +197,6 @@ await fs.writeFile(
             padding: var(--size--2) var(--size--4);
             display: flex;
             justify-content: center;
-            align-items: center;
           `}"
         >
           <div
