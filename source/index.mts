@@ -194,9 +194,14 @@ await fs.writeFile(
         <div
           css="${css`
             flex: 1;
+            min-width: var(--size--0);
+            min-height: var(--size--0);
+            max-width: 100%;
+            max-height: 100%;
             padding: var(--size--2) var(--size--4);
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
           `}"
           javascript="${javascript`
