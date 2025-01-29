@@ -242,8 +242,6 @@ await fs.writeFile(
                   <div
                     css="${css`
                       flex: 1;
-                      min-width: 0;
-                      min-height: 0;
                       display: flex;
                     `}"
                   >
@@ -254,8 +252,6 @@ await fs.writeFile(
                           key="button"
                           css="${css`
                             flex: 1;
-                            min-width: 0;
-                            min-height: 0;
                             border-top: var(--border-width--1) solid
                               light-dark(
                                 var(--color--slate--400),
