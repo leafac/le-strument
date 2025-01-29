@@ -240,7 +240,6 @@ await fs.writeFile(
                       <div
                         key="button"
                         css="${css`
-                          aspect-ratio: var(--aspect-ratio--square);
                           border-top: var(--border-width--1) solid
                             light-dark(
                               var(--color--slate--400),
