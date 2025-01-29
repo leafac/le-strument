@@ -195,137 +195,124 @@ await fs.writeFile(
           css="${css`
             flex: 1;
             padding: var(--size--2) var(--size--4);
-            display: flex;
-            justify-content: center;
+            overflow: hidden;
           `}"
         >
           <div
             css="${css`
               aspect-ratio: 13 / 6;
               max-width: 100%;
-              height: 100%;
+              max-height: 100%;
+              margin: var(--size--0) auto;
               display: flex;
-              align-items: center;
+              flex-direction: column;
+            `}"
+            javascript="${javascript`
+              const tuning = [64, 59, 55, 50, 45, 40];
+              const voices = new Map();
+              this.ontouchstart = (event) => {
+                if (!event.target.matches('[key~="button"]')) return;
+                const note = tuning[event.target.row] + event.target.column + 12 * Number(document.querySelector('[name="octave"]').value);
+                if (note < 0 || 127 < note) return
+                document.querySelector("body").midi.send([0b10010000, note, 64]);
+                voices.set(event.target, note);
+                javascript.stateAdd(event.target, "active");
+              };
+              this.ontouchend = (event) => {
+                if (!event.target.matches('[key~="button"]')) return;
+                const note = voices.get(event.target);
+                if (note === undefined) return;
+                document.querySelector("body").midi.send([0b10000000, note, 64]);
+                voices.delete(event.target);
+                javascript.stateRemove(event.target, "active");
+              };
             `}"
           >
-            <div
-              css="${css`
-                width: 100%;
-                aspect-ratio: 13 / 6;
-                display: flex;
-                flex-direction: column;
-              `}"
-              javascript="${javascript`
-                const tuning = [64, 59, 55, 50, 45, 40];
-                const voices = new Map();
-                this.ontouchstart = (event) => {
-                  if (!event.target.matches('[key~="button"]')) return;
-                  const note = tuning[event.target.row] + event.target.column + 12 * Number(document.querySelector('[name="octave"]').value);
-                  if (note < 0 || 127 < note) return
-                  document.querySelector("body").midi.send([0b10010000, note, 64]);
-                  voices.set(event.target, note);
-                  javascript.stateAdd(event.target, "active");
-                };
-                this.ontouchend = (event) => {
-                  if (!event.target.matches('[key~="button"]')) return;
-                  const note = voices.get(event.target);
-                  if (note === undefined) return;
-                  document.querySelector("body").midi.send([0b10000000, note, 64]);
-                  voices.delete(event.target);
-                  javascript.stateRemove(event.target, "active");
-                };
-              `}"
-            >
-              $${Array.from(
-                { length: 6 },
-                (array, row) => html`
-                  <div
-                    css="${css`
-                      flex: 1;
-                      display: flex;
-                    `}"
-                  >
-                    $${Array.from(
-                      { length: 13 },
-                      (array, column) => html`
-                        <div
-                          key="button"
-                          css="${css`
-                            flex: 1;
-                            border-top: var(--border-width--1) solid
+            $${Array.from(
+              { length: 6 },
+              (array, row) => html`
+                <div
+                  css="${css`
+                    flex: 1;
+                    display: flex;
+                  `}"
+                >
+                  $${Array.from(
+                    { length: 13 },
+                    (array, column) => html`
+                      <div
+                        key="button"
+                        css="${css`
+                          flex: 1;
+                          border-top: var(--border-width--1) solid
+                            light-dark(
+                              var(--color--slate--400),
+                              var(--color--slate--600)
+                            );
+                          border-left: var(--border-width--1) solid
+                            light-dark(
+                              var(--color--slate--400),
+                              var(--color--slate--600)
+                            );
+                          &:last-child {
+                            border-right: var(--border-width--1) solid
                               light-dark(
                                 var(--color--slate--400),
                                 var(--color--slate--600)
                               );
-                            border-left: var(--border-width--1) solid
+                          }
+                          :last-child > & {
+                            border-bottom: var(--border-width--1) solid
                               light-dark(
                                 var(--color--slate--400),
                                 var(--color--slate--600)
                               );
-                            &:last-child {
-                              border-right: var(--border-width--1) solid
-                                light-dark(
-                                  var(--color--slate--400),
-                                  var(--color--slate--600)
-                                );
-                            }
-                            :last-child > & {
-                              border-bottom: var(--border-width--1) solid
-                                light-dark(
-                                  var(--color--slate--400),
-                                  var(--color--slate--600)
-                                );
-                            }
-                            :first-child > &:first-child {
-                              border-top-left-radius: var(--border-radius--1);
-                            }
-                            :first-child > &:last-child {
-                              border-top-right-radius: var(--border-radius--1);
-                            }
-                            :last-child > &:last-child {
-                              border-bottom-right-radius: var(
-                                --border-radius--1
-                              );
-                            }
-                            :last-child > &:first-child {
-                              border-bottom-left-radius: var(
-                                --border-radius--1
-                              );
-                            }
-                          `} ${column === 0 ||
-                          column === 5 ||
-                          column === 7 ||
-                          column === 10
-                            ? css`
-                                background-color: light-dark(
-                                  var(--color--slate--200),
-                                  var(--color--slate--800)
-                                );
-                              `
-                            : css`
-                                background-color: light-dark(
-                                  var(--color--slate--100),
-                                  var(--color--slate--900)
-                                );
-                              `} ${css`
-                            &[state~="active"] {
+                          }
+                          :first-child > &:first-child {
+                            border-top-left-radius: var(--border-radius--1);
+                          }
+                          :first-child > &:last-child {
+                            border-top-right-radius: var(--border-radius--1);
+                          }
+                          :last-child > &:last-child {
+                            border-bottom-right-radius: var(--border-radius--1);
+                          }
+                          :last-child > &:first-child {
+                            border-bottom-left-radius: var(--border-radius--1);
+                          }
+                        `} ${column === 0 ||
+                        column === 5 ||
+                        column === 7 ||
+                        column === 10
+                          ? css`
                               background-color: light-dark(
-                                var(--color--green--500),
-                                var(--color--green--500)
+                                var(--color--slate--200),
+                                var(--color--slate--800)
                               );
-                            }
-                          `}"
-                          javascript="${javascript`
-                            this.row = ${row};
-                            this.column = ${column};
-                          `}"
-                        ></div>
-                      `,
-                    )}
-                  </div>
-                `,
-              )}
-            </div>
+                            `
+                          : css`
+                              background-color: light-dark(
+                                var(--color--slate--100),
+                                var(--color--slate--900)
+                              );
+                            `} ${css`
+                          &[state~="active"] {
+                            background-color: light-dark(
+                              var(--color--green--500),
+                              var(--color--green--500)
+                            );
+                          }
+                        `}"
+                        javascript="${javascript`
+                          this.row = ${row};
+                          this.column = ${column};
+                        `}"
+                      ></div>
+                    `,
+                  )}
+                </div>
+              `,
+            )}
           </div>
         </div>
       </body>
