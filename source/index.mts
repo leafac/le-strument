@@ -35,7 +35,7 @@ await fs.writeFile(
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1"
         />
-        <title>Lê-strument</title>
+        <title>Le-strument</title>
       </head>
       <body
         css="${css`
@@ -86,7 +86,7 @@ await fs.writeFile(
               line-height: var(--font-size--4--line-height);
             `}"
           >
-            Lê-strument
+            Le-strument
           </div>
           <div
             css="${css`
