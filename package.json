@@ -1,8 +1,8 @@
 {
   "scripts": {
     "prepare": "tsc && build && node ./build/index.mjs",
-    "start": "nodemon --watch \"./package.json\" --watch \"./tsconfig.json\" --watch \"./source/\" --watch \"./static/\" --ext \"*\" --exec \"npm run prepare && caddy file-server --root ./build/static/ --domain localhost\"",
-    "test": "npm run prepare && prettier --check \"./package.json\" \"./tsconfig.json\" \"./source/\""
+    "start": "nodemon --watch ./package.json --watch ./tsconfig.json --watch ./source/ --watch ./static/ --ext \"*\" --exec \"npm run prepare && caddy file-server --root ./build/static/ --domain localhost\"",
+    "test": "npm run prepare && prettier --check ./package.json ./tsconfig.json ./source/"
   },
   "dependencies": {
     "@fontsource-variable/roboto-flex": "^5.1.1",
